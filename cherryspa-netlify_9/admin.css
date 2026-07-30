@@ -1,0 +1,227 @@
+/* ==================================================================
+   CHERRY SPA - admin.css
+   管理画面用スタイル。公開サイト（style.css）とは独立させ、
+   誤って公開サイトのデザイン変更が管理画面に影響しないようにしている。
+   ================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --admin-bg: #F4F5F7;
+  --admin-surface: #FFFFFF;
+  --admin-border: #E1E4E8;
+  --admin-text: #24292F;
+  --admin-text-sub: #57606A;
+  --admin-primary: #8C2438;
+  --admin-primary-hover: #A8324A;
+  --admin-accent: #C6A15A;
+}
+
+body {
+  margin: 0;
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  background: var(--admin-bg);
+  color: var(--admin-text);
+}
+
+.sr-only-input { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+button { font: inherit; cursor: pointer; border: none; }
+input, textarea { font: inherit; }
+
+/* ---------- パスコード認証 ---------- */
+.auth-overlay {
+  position: fixed; inset: 0; z-index: 999;
+  background: #1C1B19;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity .3s, visibility .3s;
+}
+.auth-overlay.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.auth-box {
+  background: var(--admin-surface);
+  padding: 40px 34px;
+  border-radius: 14px;
+  width: 90%; max-width: 340px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,.4);
+}
+.auth-box h1 { font-size: 18px; margin: 0 0 10px; }
+.auth-box p { font-size: 13px; color: var(--admin-text-sub); margin: 0 0 20px; }
+.auth-box input {
+  width: 100%; padding: 12px 14px; border: 1px solid var(--admin-border); border-radius: 8px;
+  margin-bottom: 16px; font-size: 14px;
+}
+.auth-error { color: var(--admin-primary); font-size: 12px; min-height: 16px; margin: 10px 0 0; }
+.auth-note { font-size: 11px; color: #8A94A0; margin-top: 18px; line-height: 1.6; }
+
+/* ---------- 共通ボタン ---------- */
+.btn-primary, .btn-secondary {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: background .2s, transform .2s;
+}
+.btn-primary { background: var(--admin-primary); color: #fff; width: 100%; }
+.btn-primary:hover { background: var(--admin-primary-hover); }
+.btn-secondary { background: var(--admin-surface); color: var(--admin-text); border: 1px solid var(--admin-border) !important; }
+.btn-secondary:hover { border-color: var(--admin-primary) !important; color: var(--admin-primary); }
+
+/* ---------- 全体レイアウト ---------- */
+.admin-app { max-width: 1400px; margin: 0 auto; padding: 24px; }
+
+.admin-header {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+  margin-bottom: 10px;
+}
+.admin-header h1 { font-size: 20px; margin: 0; }
+.admin-header-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.admin-header-actions .btn-primary { width: auto; }
+
+.admin-guide {
+  font-size: 12.5px; color: var(--admin-text-sub); background: #FFF8EC;
+  border: 1px solid #F0DFB8; padding: 12px 16px; border-radius: 8px; margin-bottom: 24px; line-height: 1.7;
+}
+.admin-guide code { background: rgba(0,0,0,.06); padding: 1px 6px; border-radius: 4px; }
+
+.admin-body { display: grid; grid-template-columns: 440px 1fr; gap: 24px; align-items: start; }
+
+/* ---------- 編集パネル ---------- */
+.admin-panel {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.admin-tabs { display: flex; border-bottom: 1px solid var(--admin-border); }
+.admin-tab {
+  flex: 1; background: none; padding: 14px 10px; font-size: 13px; font-weight: 700;
+  color: var(--admin-text-sub); border-bottom: 2px solid transparent;
+}
+.admin-tab.is-active { color: var(--admin-primary); border-bottom-color: var(--admin-primary); }
+
+.tab-panel { display: none; padding: 18px; max-height: 78vh; overflow-y: auto; }
+.tab-panel.is-active { display: block; }
+
+.tab-intro { font-size: 12.5px; color: var(--admin-text-sub); margin: 0 0 16px; line-height: 1.7; }
+
+/* フィールドグループ（アコーディオン） */
+.field-group { border: 1px solid var(--admin-border); border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+.field-group summary {
+  padding: 12px 14px; font-size: 13px; font-weight: 700; cursor: pointer; background: #FAFBFC;
+  list-style: none;
+}
+.field-group summary::-webkit-details-marker { display: none; }
+.field-group summary::before { content: "▸ "; color: var(--admin-accent); }
+.field-group[open] summary::before { content: "▾ "; }
+.field-group-body { padding: 4px 14px 14px; display: flex; flex-direction: column; gap: 12px; }
+
+.field-row { display: flex; flex-direction: column; gap: 5px; font-size: 12.5px; }
+.field-label { color: var(--admin-text-sub); }
+.field-input {
+  width: 100%; padding: 9px 11px; border: 1px solid var(--admin-border); border-radius: 6px;
+  font-size: 13px; resize: vertical; background: #fff;
+}
+.field-input:focus { outline: none; border-color: var(--admin-primary); }
+
+/* 表示設定タブ */
+.visibility-group-heading {
+  font-size: 12px; font-weight: 700; color: var(--admin-text-sub); text-transform: uppercase;
+  letter-spacing: .04em; margin: 20px 0 4px; padding-top: 10px; border-top: 1px solid var(--admin-border);
+}
+.visibility-group-heading:first-of-type { margin-top: 4px; padding-top: 0; border-top: none; }
+.toggle-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 4px; border-bottom: 1px solid var(--admin-border); font-size: 13px;
+}
+.toggle-row:last-child { border-bottom: none; }
+.switch { position: relative; display: inline-block; width: 42px; height: 24px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.switch-slider {
+  position: absolute; inset: 0; background: #C7CCD1; border-radius: 999px; cursor: pointer; transition: background .2s;
+}
+.switch-slider::before {
+  content: ""; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px;
+  background: #fff; border-radius: 50%; transition: transform .2s;
+}
+.switch input:checked + .switch-slider { background: var(--admin-primary); }
+.switch input:checked + .switch-slider::before { transform: translateX(18px); }
+
+/* 画像編集タブ */
+.image-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.image-cell { border: 1px solid var(--admin-border); border-radius: 8px; padding: 10px; }
+.image-cell-label { font-size: 12px; font-weight: 700; margin: 0 0 8px; }
+.dropzone {
+  position: relative; aspect-ratio: 4/3; border: 2px dashed var(--admin-border); border-radius: 8px;
+  overflow: hidden; cursor: pointer; background: #FAFBFC; display: flex; align-items: center; justify-content: center;
+  transition: border-color .2s, background .2s;
+}
+.dropzone.is-dragover { border-color: var(--admin-primary); background: #FFF1F3; }
+.dropzone img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.dropzone-hint {
+  position: absolute; bottom: 0; left: 0; right: 0; padding: 6px 4px; text-align: center;
+  font-size: 10px; color: #fff; background: rgba(0,0,0,.55);
+}
+.image-url-input { margin-top: 8px; font-size: 11px; }
+
+/* ---------- プレビュー ---------- */
+.admin-preview {
+  position: sticky; top: 24px;
+  background: var(--admin-surface); border: 1px solid var(--admin-border); border-radius: 12px;
+  padding: 12px; height: 86vh; display: flex; flex-direction: column;
+}
+.admin-preview-label { font-size: 12px; color: var(--admin-text-sub); margin: 0 0 8px; }
+.admin-preview iframe { flex: 1; width: 100%; border: 1px solid var(--admin-border); border-radius: 8px; }
+
+/* ---------- リスト管理タブ（セラピスト・SNS） ---------- */
+.list-section-heading {
+  font-size: 13px; font-weight: 700; margin: 24px 0 12px; padding-top: 14px;
+  border-top: 1px solid var(--admin-border);
+}
+.list-section-heading:first-of-type { margin-top: 4px; padding-top: 0; border-top: none; }
+.list-item-card {
+  border: 1px solid var(--admin-border); border-radius: 8px; padding: 14px;
+  margin-bottom: 14px; display: flex; flex-direction: column; gap: 10px; background: #FAFBFC;
+}
+.list-item-header { display: flex; align-items: center; justify-content: space-between; font-size: 13px; font-weight: 700; }
+.list-item-delete {
+  background: none; border: 1px solid var(--admin-border) !important; color: var(--admin-primary);
+  font-size: 11px; padding: 5px 10px; border-radius: 6px;
+}
+.list-item-delete:hover { background: #FFF1F3; border-color: var(--admin-primary) !important; }
+.list-item-dropzone { aspect-ratio: 5/3; max-width: 220px; }
+.list-add-btn { width: 100%; margin-top: 4px; }
+
+/* ---------- GitHub連携パネル ---------- */
+.github-status {
+  min-height: 20px; font-size: 12.5px; font-weight: 700; margin: 0 0 16px; padding: 0 2px;
+}
+.github-status.is-success { color: #1A7F37; }
+.github-status.is-error { color: var(--admin-primary); }
+
+.github-settings {
+  background: var(--admin-surface); border: 1px solid var(--admin-border); border-radius: 10px;
+  margin-bottom: 24px; overflow: hidden;
+}
+.github-settings summary {
+  padding: 14px 18px; font-size: 13.5px; font-weight: 700; cursor: pointer; background: #FAFBFC; list-style: none;
+}
+.github-settings summary::-webkit-details-marker { display: none; }
+.github-settings summary::before { content: "▸ "; color: var(--admin-accent); }
+.github-settings[open] summary::before { content: "▾ "; }
+.github-settings-body { padding: 6px 18px 20px; display: flex; flex-direction: column; gap: 14px; max-width: 560px; }
+.github-warn {
+  font-size: 11.5px; color: #8A6D3B; background: #FFF8EC; border: 1px solid #F0DFB8;
+  padding: 10px 12px; border-radius: 6px; line-height: 1.7; margin: 0;
+}
+
+/* ---------- レスポンシブ ---------- */
+@media (max-width: 1100px) {
+  .admin-body { grid-template-columns: 1fr; }
+  .admin-preview { position: static; height: 70vh; }
+}
+@media (max-width: 560px) {
+  .image-grid { grid-template-columns: 1fr; }
+  .admin-header-actions { width: 100%; }
+  .admin-header-actions button { flex: 1; }
+}

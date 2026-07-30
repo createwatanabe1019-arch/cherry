@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>管理画面｜チェリースパ</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- ============================================================
+     簡易パスコード認証（クライアント側のみの簡易的な入口確認）
+     ============================================================ -->
+<div id="authOverlay" class="auth-overlay">
+  <form id="authForm" class="auth-box">
+    <h1>チェリースパ 管理画面</h1>
+    <p>パスコードを入力してください。</p>
+    <input type="password" id="authInput" placeholder="パスコード" autocomplete="off" required>
+    <button type="submit" class="btn-primary">入室する</button>
+    <p id="authError" class="auth-error"></p>
+    <p class="auth-note">※ このパスコードは簡易的な入室確認であり、強固なセキュリティではありません。第三者に画面やURLを共有しないようご注意ください。</p>
+  </form>
+</div>
+
+<!-- ============================================================
+     管理画面本体
+     ============================================================ -->
+<div class="admin-app">
+
+  <header class="admin-header">
+    <h1>チェリースパ 管理画面</h1>
+    <div class="admin-header-actions">
+      <input type="file" id="loadFileInput" accept="application/json" class="sr-only-input">
+      <button id="loadBtn" class="btn-secondary">content.jsonを読み込む</button>
+      <button id="resetPreviewBtn" class="btn-secondary">プレビューをリセット</button>
+      <button id="saveBtn" class="btn-secondary">ローカルに保存（バックアップ）</button>
+      <button id="publishGhBtn" class="btn-primary">GitHubに保存して公開</button>
+    </div>
+  </header>
+
+  <p id="githubStatus" class="github-status"></p>
+
+  <details class="github-settings">
+    <summary>GitHub連携設定（初回のみ）</summary>
+    <div class="github-settings-body">
+      <p class="tab-intro">
+        GitHubリポジトリと連携すると、下の「GitHubに保存して公開」ボタン1つで
+        content.json が自動的にリポジトリへ保存され、Netlifyが自動で再デプロイします。<br>
+        設定方法は別途ご案内した手順（GitHubリポジトリ作成 → Netlifyと連携 → トークン発行）を先に行ってください。
+      </p>
+      <label class="field-row">
+        <span class="field-label">リポジトリ（例：yourname/cherryspa-site）</span>
+        <input type="text" id="ghRepoInput" class="field-input" placeholder="yourname/cherryspa-site">
+      </label>
+      <label class="field-row">
+        <span class="field-label">ブランチ名</span>
+        <input type="text" id="ghBranchInput" class="field-input" placeholder="main" value="main">
+      </label>
+      <label class="field-row">
+        <span class="field-label">content.json のパス</span>
+        <input type="text" id="ghPathInput" class="field-input" placeholder="content.json" value="content.json">
+      </label>
+      <label class="field-row">
+        <span class="field-label">Personal Access Token（Fine-grained・Contents: Read and write）</span>
+        <input type="password" id="ghTokenInput" class="field-input" placeholder="ghp_xxxxxxxxxxxxxxxx" autocomplete="off">
+      </label>
+      <p class="github-warn">
+        ⚠️ このトークンはこのブラウザ内（localStorage）にのみ保存され、GitHub APIへの通信以外には送信されません。
+        ただし他の人とパソコン・ブラウザを共有している場合は注意してください。対象リポジトリだけに書き込み権限を絞った
+        Fine-grainedトークンの使用を強く推奨します。
+      </p>
+      <button id="saveGhConfigBtn" class="btn-secondary">GitHub設定を保存</button>
+    </div>
+  </details>
+
+  <p class="admin-guide">
+    編集内容は右側のプレビューにすぐ反映されます。下の「GitHub連携設定」を一度設定しておくと、
+    「GitHubに保存して公開」ボタン1つで <code>content.json</code> がリポジトリに保存され、
+    Netlifyが自動的に再デプロイします（30秒〜1分程度）。GitHub連携前や、念のためのバックアップには
+    「ローカルに保存」から <code>content.json</code> をダウンロードしておくこともできます。
+  </p>
+
+  <div class="admin-body">
+
+    <!-- 編集パネル -->
+    <div class="admin-panel">
+      <div class="admin-tabs" role="tablist">
+        <button class="admin-tab is-active" data-tab="text" role="tab">テキスト編集</button>
+        <button class="admin-tab" data-tab="image" role="tab">画像編集</button>
+        <button class="admin-tab" data-tab="visibility" role="tab">表示設定</button>
+        <button class="admin-tab" data-tab="list" role="tab">リスト管理</button>
+      </div>
+
+      <div class="tab-panel is-active" id="textTabContent"></div>
+      <div class="tab-panel" id="imageTabContent"></div>
+      <div class="tab-panel" id="visibilityTabContent"></div>
+      <div class="tab-panel" id="listTabContent">
+        <h3 class="list-section-heading">スタッフ（セラピスト）</h3>
+        <div id="staffListContainer"></div>
+        <h3 class="list-section-heading">SNS一覧ページのリンク</h3>
+        <div id="snsListContainer"></div>
+      </div>
+    </div>
+
+    <!-- ライブプレビュー -->
+    <div class="admin-preview">
+      <p class="admin-preview-label">ライブプレビュー</p>
+      <iframe id="previewFrame" src="index.html" title="サイトプレビュー"></iframe>
+    </div>
+
+  </div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>

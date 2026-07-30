@@ -1,0 +1,520 @@
+/* ==================================================================
+   CIEL SPA - style.css
+   目次:
+   1. リセット & ベース
+   2. デザイントークン（カラー・フォント・余白）
+   3. 共通ユーティリティ（ボタン・見出し・コンテナ）
+   4. ヘッダー
+   5. ファーストビュー（ヒーロー）
+   6. 選ばれる理由
+   7. 施術メニュー
+   8. おすすめコース
+   9. セラピスト紹介
+   10. ギャラリー
+   11. お客様の声
+   12. 施術の流れ
+   13. FAQ
+   14. アクセス
+   15. CTAセクション
+   16. フッター
+   17. 固定フッターCTA（スマホ）
+   18. スクロールアニメーション
+   19. レスポンシブ調整
+   20. アクセシビリティ / 印刷 / reduced-motion
+   ================================================================== */
+
+/* ---------- 1. リセット & ベース ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body {
+  margin: 0;
+  font-family: "Noto Sans JP", "Yu Gothic", sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; margin: 0; padding: 0; }
+button { font: inherit; background: none; border: none; cursor: pointer; }
+table { border-collapse: collapse; width: 100%; }
+h1, h2, h3 { font-family: "Shippori Mincho", "Yu Mincho", serif; color: var(--color-heading); margin: 0; }
+
+/* ---------- 2. デザイントークン（メンズエステ向け：黒×ゴールド×深紅の夜の高級感） ---------- */
+:root {
+  /* Color */
+  --color-bg: #131110;
+  --color-bg-alt: #1B1815;
+  --color-text: #C9C2B7;
+  --color-heading: #F3EDE3;
+  --color-gold: #C6A15A;
+  --color-gold-deep: #E3BD78;
+  --color-red: #8C2438;
+  --color-red-deep: #A8324A;
+  --color-border: rgba(255,255,255,.12);
+  --color-card: #1E1A17;
+  --color-dark: #0B0A09;
+
+  /* Spacing */
+  --section-py: 110px;
+  --section-py-sp: 64px;
+  --container-w: 1180px;
+
+  /* Motion */
+  --ease: cubic-bezier(.19,1,.22,1);
+}
+
+/* ---------- 3. 共通ユーティリティ ---------- */
+.container { max-width: var(--container-w); margin: 0 auto; padding: 0 24px; }
+.container-narrow { max-width: 800px; }
+.section { padding: var(--section-py) 0; }
+.section-alt { background: var(--color-bg-alt); }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+.sp-only { display: none; }
+
+.eyebrow {
+  font-family: "Cinzel", "Cormorant Garamond", serif;
+  font-style: normal;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  color: var(--color-gold);
+  font-size: 13px;
+  margin: 0 0 10px;
+  text-align: center;
+}
+.section-title {
+  text-align: center;
+  font-size: clamp(26px, 3.4vw, 38px);
+  font-weight: 700;
+  letter-spacing: .04em;
+  position: relative;
+  padding-bottom: 26px;
+  margin-bottom: 20px;
+}
+.gold-underline {
+  position: absolute; left: 50%; bottom: 0; height: 1px; width: 0;
+  background: var(--color-gold);
+  transform: translateX(-50%);
+  transition: width 1.1s var(--ease);
+}
+.section-title.in-view .gold-underline,
+.reveal.in-view .gold-underline { width: 64px; }
+.section-lead {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto 56px;
+  color: #A79E90;
+}
+.gold-text { color: var(--color-gold); }
+
+/* ボタン共通 */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 15px 30px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .3s, color .3s, border-color .3s;
+  border: 1px solid transparent;
+}
+.btn .icon { width: 18px; height: 18px; }
+.btn-primary {
+  background: var(--color-red);
+  color: #fff;
+  border-color: var(--color-red);
+  box-shadow: 0 8px 24px rgba(140,36,56,.35);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(140,36,56,.5); background: var(--color-red-deep); border-color: var(--color-red-deep); }
+.btn-outline {
+  background: transparent;
+  color: var(--color-heading);
+  border-color: var(--color-border);
+}
+.btn-outline:hover { border-color: var(--color-gold); color: var(--color-gold-deep); transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: var(--color-heading); border-color: transparent; padding: 10px 14px; }
+.btn-ghost:hover { color: var(--color-gold-deep); }
+.btn-ghost-light { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.5); }
+.btn-ghost-light:hover { border-color: #fff; background: rgba(255,255,255,.08); }
+.btn-line-outline { border-color: var(--color-border); color: var(--color-heading); padding: 10px 18px; }
+.btn-line-outline:hover { border-color: var(--color-gold); }
+.btn-line { background: #06C755; color: #fff; border-color: #06C755; }
+.btn-line:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(6,199,85,.35); }
+.btn-lg { padding: 19px 42px; font-size: 16px; }
+.btn-sm { padding: 10px 18px; font-size: 13px; }
+.btn-block { width: 100%; }
+
+/* ---------- 4. ヘッダー ---------- */
+.site-header {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 500;
+  background: rgba(19,17,16,.82);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
+  transition: box-shadow .3s, border-color .3s, background .3s;
+}
+.site-header.is-scrolled { box-shadow: 0 4px 24px rgba(0,0,0,.35); border-color: var(--color-border); background: rgba(19,17,16,.95); }
+.header-inner {
+  max-width: var(--container-w); margin: 0 auto; padding: 16px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+}
+.logo { display: flex; flex-direction: column; line-height: 1.2; }
+.logo-en { font-family: "Cinzel", serif; font-weight: 600; font-size: 20px; letter-spacing: .16em; color: var(--color-heading); }
+.logo-ja { font-size: 10px; letter-spacing: .08em; color: var(--color-gold-deep); }
+.gnav ul { display: flex; gap: 30px; }
+.gnav a { font-size: 14px; position: relative; padding: 4px 0; }
+.gnav a::after {
+  content: ""; position: absolute; left: 0; bottom: -2px; width: 0; height: 1px;
+  background: var(--color-gold); transition: width .3s var(--ease);
+}
+.gnav a:hover::after { width: 100%; }
+.header-cta { display: flex; align-items: center; gap: 10px; }
+.hamburger { display: none; flex-direction: column; gap: 5px; width: 26px; }
+.hamburger span { display: block; height: 2px; background: var(--color-heading); transition: transform .3s, opacity .3s; }
+
+/* ---------- 5. ファーストビュー ---------- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+}
+.hero-bg { position: absolute; inset: 0; z-index: -2; will-change: transform; }
+.hero-bg img { width: 100%; height: 120%; object-fit: cover; object-position: center; }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(20,18,16,.55) 0%, rgba(20,18,16,.35) 45%, rgba(20,18,16,.7) 100%);
+}
+.hero-content { position: relative; z-index: 1; padding: 140px 24px 100px; max-width: 780px; }
+.hero-content h1 {
+  color: #fff;
+  font-size: clamp(32px, 5.6vw, 56px);
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 22px;
+}
+.hero-sub { font-size: clamp(14px, 1.6vw, 17px); color: rgba(255,255,255,.9); margin-bottom: 28px; }
+.hero-badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+.hero-badges span {
+  font-size: 12px; letter-spacing: .04em; padding: 8px 16px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.4); backdrop-filter: blur(4px);
+}
+.hero-cta { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.hero-cta-sub { display: flex; gap: 10px; }
+.scroll-hint {
+  position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+  z-index: 1; font-size: 10px; letter-spacing: .2em; color: rgba(255,255,255,.8);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.scroll-hint span {
+  width: 1px; height: 34px; background: rgba(255,255,255,.6);
+  animation: scrollLine 2s infinite;
+}
+@keyframes scrollLine {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  50.01% { transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ---------- 6. 選ばれる理由 ---------- */
+.reason-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 32px; }
+.reason-card { text-align: center; padding: 20px; }
+.reason-icon {
+  width: 64px; height: 64px; margin: 0 auto 20px;
+  color: var(--color-gold);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform .4s var(--ease), border-color .4s;
+}
+.reason-icon svg { width: 30px; height: 30px; }
+.reason-card:hover .reason-icon { transform: translateY(-6px); border-color: var(--color-gold); }
+.reason-card h3 { font-size: 17px; margin-bottom: 10px; }
+.reason-card p { font-size: 14px; color: #A79E90; }
+
+/* ---------- 7. 施術メニュー ---------- */
+.menu-panels { max-width: 860px; margin: 0 auto; }
+.menu-table { display: table; width: 100%; background: var(--color-card); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 30px rgba(0,0,0,.04); }
+.menu-note { text-align: center; margin-top: 18px; font-size: 13px; color: var(--color-gold-deep); }
+.menu-cancel-policy {
+  text-align: center; margin-top: 14px; font-size: 12px; color: #8F887C; line-height: 1.8;
+  max-width: 640px; margin-left: auto; margin-right: auto;
+}
+.menu-table th, .menu-table td { padding: 18px 20px; text-align: left; border-bottom: 1px solid var(--color-border); font-size: 14px; }
+.menu-table thead th { background: var(--color-bg-alt); font-size: 12px; color: #8F887C; font-weight: 500; }
+.menu-table tbody th { font-weight: 700; color: var(--color-heading); }
+.menu-table tbody tr:last-child td, .menu-table tbody tr:last-child th { border-bottom: none; }
+.menu-table tbody tr:hover { background: rgba(198,161,90,.06); }
+
+/* ---------- 8. おすすめコース ---------- */
+.course-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.course-card {
+  position: relative;
+  background: var(--color-card);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  transition: transform .45s var(--ease), box-shadow .45s var(--ease);
+  display: flex; flex-direction: column;
+}
+.course-card:hover { transform: translateY(-8px); box-shadow: 0 24px 50px rgba(0,0,0,.1); }
+.course-card img { aspect-ratio: 6/4.4; object-fit: cover; }
+.course-card-featured { border-color: var(--color-gold); box-shadow: 0 20px 50px rgba(184,151,90,.18); }
+.course-badge {
+  position: absolute; top: 16px; left: 16px; z-index: 2;
+  background: rgba(28,27,25,.85); color: #fff; font-size: 11px; letter-spacing: .06em;
+  padding: 7px 14px; border-radius: 999px; backdrop-filter: blur(4px);
+}
+.course-badge-gold { background: var(--color-gold); color: #fff; }
+.course-body { padding: 26px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.course-body h3 { font-size: 19px; }
+.course-body p { font-size: 13.5px; color: #A79E90; flex: 1; }
+.course-price { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.price-before { text-decoration: line-through; color: #6E675D; font-size: 14px; }
+.price-now { font-family: "Cormorant Garamond", serif; font-size: 26px; font-weight: 600; color: var(--color-heading); }
+.price-now-gold { color: var(--color-gold-deep); }
+.price-note { font-size: 11px; color: #8F887C; }
+.course-limit { font-size: 12px; color: var(--color-gold-deep); }
+.course-limit strong { font-size: 15px; }
+
+/* ---------- 9. セラピスト紹介 ---------- */
+.therapist-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.therapist-card { background: var(--color-card); border-radius: 20px; overflow: hidden; border: 1px solid var(--color-border); }
+.therapist-card img { aspect-ratio: 5/5.6; object-fit: cover; filter: grayscale(.15); transition: filter .4s; }
+.therapist-card:hover img { filter: grayscale(0); }
+.therapist-body { padding: 24px; }
+.therapist-body h3 { font-size: 18px; margin-bottom: 4px; }
+.therapist-role { font-size: 12px; color: var(--color-gold-deep); letter-spacing: .05em; margin-bottom: 14px; }
+.therapist-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.therapist-tags li { font-size: 11px; padding: 5px 12px; border: 1px solid var(--color-border); border-radius: 999px; color: #A79E90; }
+.therapist-comment { font-size: 13.5px; color: #A79E90; border-top: 1px solid var(--color-border); padding-top: 14px; }
+.therapist-bio { font-size: 13.5px; color: #A79E90; margin: 0 0 14px; }
+.therapist-grid-full { margin-top: 40px; }
+.therapist-more { text-align: center; margin-top: 40px; }
+
+/* ---------- 10. ギャラリー ---------- */
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 160px; gap: 14px;
+}
+.gallery-grid a { display: block; overflow: hidden; border-radius: 14px; }
+.gallery-grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; transition: transform .6s var(--ease); }
+.gallery-grid img:hover { transform: scale(1.04); }
+.gallery-grid a:nth-child(1) { grid-row: span 2; grid-column: span 1; }
+.gallery-grid a:nth-child(4) { grid-row: span 2; grid-column: span 1; }
+
+/* ---------- 11. お客様の声 ---------- */
+.rating-score { font-family: "Cormorant Garamond", serif; font-size: 32px; color: var(--color-gold-deep); vertical-align: middle; margin-right: 6px; }
+.rating-stars { color: var(--color-gold); letter-spacing: 2px; vertical-align: middle; margin-right: 8px; }
+.voice-scroll {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+}
+.voice-card {
+  background: var(--color-card); border-radius: 18px; padding: 26px; border: 1px solid var(--color-border);
+  display: flex; flex-direction: column; gap: 14px; transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.voice-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,.06); }
+.voice-stars { color: var(--color-gold); letter-spacing: 2px; }
+.voice-card p { font-size: 13.5px; color: #B4ACA0; }
+.voice-author { font-size: 12px; color: #8F887C; margin-top: auto; }
+
+/* ---------- 12. 施術の流れ ---------- */
+.flow-list { max-width: 720px; margin: 0 auto; position: relative; }
+.flow-list::before {
+  content: ""; position: absolute; left: 27px; top: 10px; bottom: 10px; width: 1px;
+  background: var(--color-border);
+}
+.flow-item { position: relative; padding: 0 0 44px 76px; }
+.flow-item:last-child { padding-bottom: 0; }
+.flow-step {
+  position: absolute; left: 0; top: 0; width: 56px; height: 56px;
+  border-radius: 50%; background: var(--color-dark); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: "Cormorant Garamond", serif; font-size: 12px; letter-spacing: .02em; text-align: center;
+}
+.flow-item h3 { font-size: 17px; margin-bottom: 8px; }
+.flow-item p { font-size: 13.5px; color: #A79E90; }
+
+/* ---------- 13. FAQ ---------- */
+.accordion-item { border-bottom: 1px solid var(--color-border); }
+.accordion-btn {
+  width: 100%; text-align: left; padding: 22px 34px 22px 0; position: relative;
+  font-size: 15px; font-weight: 500; color: var(--color-heading);
+}
+.accordion-btn::before, .accordion-btn::after {
+  content: ""; position: absolute; right: 6px; top: 50%; background: var(--color-gold-deep);
+  transition: transform .3s var(--ease);
+}
+.accordion-btn::before { width: 14px; height: 1px; transform: translateY(-50%); }
+.accordion-btn::after { width: 1px; height: 14px; transform: translate(6.5px, -50%); }
+.accordion-btn[aria-expanded="true"]::after { transform: translate(6.5px, -50%) scaleY(0); }
+.accordion-panel {
+  max-height: 0; overflow: hidden; transition: max-height .4s var(--ease);
+}
+.accordion-panel p { padding: 0 34px 22px 0; font-size: 14px; color: #A79E90; }
+
+/* ---------- 14. アクセス ---------- */
+.access-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: stretch; }
+.access-map { border-radius: 18px; overflow: hidden; min-height: 380px; border: 1px solid var(--color-border); }
+.access-info { background: var(--color-card); border: 1px solid var(--color-border); border-radius: 18px; padding: 34px; display: flex; flex-direction: column; gap: 24px; }
+.access-row { display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid var(--color-border); font-size: 14px; }
+.access-row:last-child { border-bottom: none; }
+.access-row dt { width: 84px; flex-shrink: 0; color: #8F887C; font-size: 12px; }
+.access-row dd { margin: 0; }
+
+/* ---------- 15. CTAセクション ---------- */
+.cta-section { position: relative; color: #fff; text-align: center; overflow: hidden; }
+.cta-bg { position: absolute; inset: 0; z-index: -2; }
+.cta-bg img { width: 100%; height: 120%; object-fit: cover; }
+.cta-content { position: relative; z-index: 1; padding: 120px 24px; }
+.cta-content h2 { color: #fff; font-size: clamp(24px, 3.6vw, 36px); margin-bottom: 16px; }
+.cta-content > p:not(.cta-note) { color: rgba(255,255,255,.85); margin-bottom: 40px; }
+.cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+.cta-note { font-size: 12px; color: var(--color-gold); letter-spacing: .03em; }
+
+/* ---------- 16. フッター ---------- */
+.site-footer { background: var(--color-dark); color: rgba(255,255,255,.75); padding: 80px 0 20px; }
+.footer-inner { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 40px; padding-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,.12); }
+.footer-brand .logo-en { color: #fff; font-size: 24px; }
+.footer-brand p { font-size: 13px; margin: 14px 0 20px; line-height: 1.8; }
+.footer-sns { display: flex; gap: 14px; }
+.footer-sns a { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: border-color .3s, background .3s; }
+.footer-sns a:hover { border-color: var(--color-gold); background: rgba(184,151,90,.12); }
+.footer-sns .icon { width: 16px; height: 16px; }
+.footer-nav h3 { color: #fff; font-family: "Noto Sans JP", sans-serif; font-size: 13px; letter-spacing: .06em; margin-bottom: 18px; }
+.footer-nav ul { display: flex; flex-direction: column; gap: 12px; }
+.footer-nav a { font-size: 13px; transition: color .3s; }
+.footer-nav a:hover { color: var(--color-gold); }
+.footer-copyright { text-align: center; font-size: 11px; color: rgba(255,255,255,.4); padding-top: 24px; }
+
+/* ---------- 17. 固定フッターCTA（スマホ） ---------- */
+.fixed-cta {
+  display: none;
+  position: fixed; bottom: 0; left: 0; width: 100%; z-index: 400;
+  background: var(--color-bg-alt); border-top: 1px solid var(--color-border);
+  box-shadow: 0 -6px 24px rgba(0,0,0,.08);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+.fixed-cta-btn {
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  padding: 10px 0 8px; font-size: 11px; font-weight: 700;
+}
+.fixed-cta-btn .icon { width: 20px; height: 20px; }
+.fixed-cta-line { background: #06C755; color: #fff; }
+.fixed-cta-web { background: var(--color-dark); color: #fff; }
+.fixed-cta-tel { background: var(--color-gold); color: #fff; }
+
+/* ---------- 18. スクロールアニメーション ---------- */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+
+/* ローディング画面 */
+#loader {
+  position: fixed; inset: 0; z-index: 9999; background: var(--color-bg);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity .6s ease, visibility .6s ease;
+}
+#loader .loader-mark {
+  font-family: "Cormorant Garamond", serif; font-size: 28px; letter-spacing: .3em; color: var(--color-gold);
+  animation: pulseFade 1.3s ease-in-out infinite;
+}
+#loader.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+@keyframes pulseFade { 0%,100% { opacity: .35; } 50% { opacity: 1; } }
+
+/* ---------- 19. レスポンシブ調整 ---------- */
+@media (max-width: 1024px) {
+  .reason-grid { grid-template-columns: repeat(2, 1fr); }
+  .course-grid, .therapist-grid, .voice-scroll { grid-template-columns: repeat(2, 1fr); }
+  .access-grid { grid-template-columns: 1fr; }
+  .access-map { min-height: 280px; }
+}
+
+@media (max-width: 768px) {
+  :root { --section-py: var(--section-py-sp); }
+  .sp-only { display: inline; }
+  .gnav { position: fixed; top: 0; right: -100%; width: 78%; max-width: 320px; height: 100svh;
+    background: var(--color-bg-alt); padding: 100px 30px 30px; transition: right .4s var(--ease); box-shadow: -10px 0 30px rgba(0,0,0,.4); border-left: 1px solid var(--color-border); }
+  .gnav.is-open { right: 0; }
+  .gnav ul { flex-direction: column; gap: 24px; }
+  .header-cta { display: none; }
+  .hamburger { display: flex; }
+  .hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.is-open span:nth-child(2) { opacity: 0; }
+  .hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .hero-content { padding: 120px 20px 90px; }
+  .hero-cta-sub { flex-direction: column; width: 100%; }
+
+  .reason-grid { grid-template-columns: 1fr; gap: 30px; }
+  .course-grid, .therapist-grid, .voice-scroll { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px; }
+
+  .menu-table, .menu-table th, .menu-table td { font-size: 13px; }
+  .menu-table th, .menu-table td { padding: 12px 10px; }
+
+  .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+
+  .fixed-cta { display: flex; }
+  body { padding-bottom: 58px; }
+}
+
+@media (max-width: 480px) {
+  .hero-badges span { font-size: 11px; padding: 6px 12px; }
+  .btn-lg { padding: 16px 30px; font-size: 14.5px; }
+}
+
+/* ---------- 20. アクセシビリティ / reduced-motion ---------- */
+a:focus-visible, button:focus-visible, .btn:focus-visible {
+  outline: 2px solid var(--color-gold-deep);
+  outline-offset: 3px;
+}
+
+/* ---------- SNS一覧ページ ---------- */
+.sns-list { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
+.sns-list-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 24px; border: 1px solid var(--color-border); border-radius: 14px;
+  background: var(--color-card); font-size: 15px; font-weight: 700; color: var(--color-heading);
+  transition: transform .3s var(--ease), border-color .3s;
+}
+.sns-list-item:hover { transform: translateY(-3px); border-color: var(--color-gold); }
+.sns-list-item .icon { width: 18px; height: 18px; color: var(--color-gold); }
+
+/* ---------- 21. 下層ページ（会社概要・プライバシーポリシー・利用規約） ---------- */
+.page-hero {
+  padding: 160px 24px 60px;
+  text-align: center;
+  background: var(--color-bg-alt);
+  border-bottom: 1px solid var(--color-border);
+}
+.page-hero .eyebrow { margin-bottom: 14px; }
+.page-hero h1 { font-size: clamp(24px, 3.4vw, 32px); }
+.legal-content { max-width: 800px; margin: 0 auto; padding: 70px 24px 110px; }
+.legal-content h2 {
+  font-size: 18px; margin: 44px 0 16px; padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-border);
+}
+.legal-content h2:first-child { margin-top: 0; }
+.legal-content p { font-size: 14.5px; color: #B4ACA0; margin: 0 0 14px; }
+.legal-content ul { margin: 0 0 14px; padding-left: 1.4em; }
+.legal-content li { font-size: 14.5px; color: #B4ACA0; list-style: disc; margin-bottom: 6px; }
+.legal-table { width: 100%; margin-bottom: 14px; }
+.legal-table th, .legal-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--color-border); font-size: 14px; }
+.legal-table th { width: 140px; color: #8F887C; font-weight: 500; }
+.back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--color-gold-deep); margin-bottom: 20px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .hero-bg, .cta-bg { transform: none !important; }
+  .scroll-hint span { animation: none; }
+  #loader { transition: none; }
+}
