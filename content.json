@@ -1,24 +1,24 @@
 {
   "text": {
     "header_logo_en": "CHERRY SPA",
-    "header_logo_ja": "大阪・梅田、日本橋　 完全予約制メンズエステ",
+    "header_logo_ja": "大阪・兎我野町 完全個室メンズエステ",
     "nav_reasons_label": "選ばれる理由",
     "nav_menu_label": "メニュー",
     "nav_therapist_label": "セラピスト",
     "nav_voice_label": "お客様の声",
     "nav_access_label": "アクセス",
     "nav_tel_label": "電話予約",
-    "nav_web_label": "LNE予約する",
+    "nav_web_label": "WEB予約する",
     "hero_eyebrow": "OSAKA TOGANOCHO PRIVATE ESTHE",
     "hero_title_pre": "頑張った自分に、",
-    "hero_title_gold": "癒し",
+    "hero_title_gold": "静寂",
     "hero_title_post": "という贅沢を。",
-    "hero_sub": "当店は完全予約制のメンズエステサロンです",
+    "hero_sub": "肩こり、腰痛、眠れない夜。その疲れ、<br class=\"sp-only\">\n        大阪・兎我野町の隠れ家で、そっとほどいてください。",
     "hero_badge1_label": "国家資格セラピスト在籍",
     "hero_badge2_label": "完全個室",
     "hero_badge3_label": "深夜5時まで営業",
     "hero_badge4_label": "Google評価 4.8",
-    "hero_web_label": "LINE予約する（30秒）",
+    "hero_web_label": "WEB予約する（30秒）",
     "reasons_lead": "「安さ」ではなく「安心」を。すべての基準は、あなたの心と身体のために。",
     "reason1_title": "国家資格保有セラピスト在籍",
     "reason1_desc": "あん摩マッサージ指圧師・鍼灸師など有資格者が、お身体の状態に合わせて施術いたします。",
@@ -42,7 +42,7 @@
     "menu_item2_price": "¥17,600",
     "menu_item2_desc": "全身＋フェイシャルの贅沢コース",
     "menu_note": "※ セラピスト指名料　¥2,200",
-    "menu_cancel_policy": "当店は風俗店ではありません！\nご予約後のキャンセルの場合、キャンセル料として全額請求させていただきます。\n女性とお会いしてすぐのキャンセルでサービス等受けていなくても女性のお時間を抑えている事になるので全額請求させていただきます。\n\n※18歳未満の方、同業者、スカウト目的、暴力団関係者、薬物使用者、泥酔者、その他当店がふさわしくないと判断した方のお問い合わせ及びご利用は固くお断り致します。\n※施術前のシャワーと、施術中の紙ショーツご着用を必ずお願い致します。 下半身を露出させる行為・自慰行為・性的サービスの要求を固く禁止致します\n\n※セラピストへの引き抜き行為、スカウト行為発覚の威力業務妨害及び労働者派遣法違反で告発しております。\n\n※反社会的勢力の排除について\nお客様が暴力団、暴力団員、暴力団準構成員その他これらに準ずる者（以下、「反社会的勢力」といいます。）又は反社会的勢力と密接な関係を有する者（以下、あわせて「反社会的勢力等」といいます。）である場合は、当グループの利用をお断りいたします。",
+    "menu_cancel_policy": "【キャンセルポリシー】ご予約時間の前日20時までは無料でキャンセル・変更が可能です。それ以降のキャンセルにつきましては、所定のキャンセル料を申し受ける場合がございます。",
     "course1_badge": "人気No.1",
     "course1_title": "全身アロマ 90分コース",
     "course1_desc": "頭からつま先まで、凝りと疲れを丁寧にほぐす当店の看板メニュー。9割のお客様がリピートを希望されています。",
@@ -72,36 +72,36 @@
     "voice4_text": "「夜遅くまで対応してもらえるのが本当に助かります。仕事帰りに立ち寄れる非日常の時間です。」",
     "voice4_author": "R.N様（20代・会社員）",
     "flow1_title": "WEB・LINE・電話で予約",
-    "flow1_desc": "24時間いつでもWEBから仮予約可能。追って担当者からご連絡いたします",
-    "flow2_title": "ご来店・カウンセリング・お支払い",
+    "flow1_desc": "24時間いつでもWEBから予約可能。空き状況をリアルタイムで確認できます。",
+    "flow2_title": "ご来店・カウンセリング",
     "flow2_desc": "お身体の状態やご希望を丁寧にヒアリング。当日の施術内容をご提案します。",
-    "flow3_title": "施術前シャワー",
-    "flow3_desc": "施術前にリラックスタイムをお過ごしください。",
+    "flow3_title": "お着替え・ご準備",
+    "flow3_desc": "清潔なガウンにお着替えいただき、施術前にリラックスタイムをお過ごしください。",
     "flow4_title": "施術",
-    "flow4_desc": "担当セラピストがオーダーメイドの施術を行います。",
-    "flow5_title": "アフターシャワー・お見送り",
-    "flow5_desc": "シャワーでオイルを流していただきお見送りさせていただきます",
+    "flow4_desc": "完全個室にて、担当セラピストがオーダーメイドの施術を行います。",
+    "flow5_title": "アフターケア・お見送り",
+    "flow5_desc": "ハーブティーをご用意し、次回に向けたアドバイスをお伝えして施術完了です。",
     "faq1_q": "エステサロンは初めてですが大丈夫ですか？",
     "faq1_a": "はい、ご安心ください。ご来店時に専任セラピストがお身体の状態やご希望を丁寧にヒアリングした上で施術内容をご提案いたします。",
-    "faq2_q": "直ぐに利用できますか？",
-    "faq2_a": "申し訳ございません\n当店は完全予約制となりますので\n一時間以内のご案内は比較的難しくなっております",
-    "faq3_q": "当日の予約はできますか？",
-    "faq3_a": "申し訳ございません\n基本的に当日のご予約は空いていない場合が多い為\n前日までのご予約を推奨しております",
+    "faq2_q": "生理中でも施術は受けられますか？",
+    "faq2_a": "施術内容によって対応が異なります。フェイシャルやヘッドスパなど生理中でも受けられるメニューをご案内しております。予約時にお気軽にご相談ください。",
+    "faq3_q": "周辺の人目が気になりますが大丈夫ですか？",
+    "faq3_a": "ご安心ください。エントランスから個室まで他のお客様と顔を合わせない動線を確保しており、外観も店名を控えめにした落ち着いた造りです。詳細な入店方法は予約確定後に個別にご案内しております。",
     "faq4_q": "駐車場はありますか？",
     "faq4_a": "専用駐車場はございませんが、近隣にコインパーキングがございます。詳しくは予約確定後のご案内メールにてお伝えしております。",
     "faq5_q": "予約の変更・キャンセルはできますか？",
-    "faq5_a": "当店は完全予約制の為基本的にご予約後のキャンセルは不可となります。キャンセル料が発生いたしますのでお時間日程に余裕を持ってご予約下さいませ",
+    "faq5_a": "ご予約時間の前日20時までは無料で変更・キャンセルが可能です。それ以降のご変更につきましては所定のキャンセル料が発生する場合がございます。",
     "faq6_q": "支払い方法を教えてください。",
-    "faq6_a": "現金、QRコード決済（PayPay等）に対応しております。",
-    "access_address": "大阪府大阪市北区梅田エリア（詳細住所はご予約確定後にご案内）",
+    "faq6_a": "現金、各種クレジットカード、電子マネー、QRコード決済（PayPay等）に対応しております。",
+    "access_address": "大阪府大阪市北区兎我野町エリア（詳細住所はご予約確定後にご案内）",
     "access_station": "JR大阪駅・地下鉄梅田駅 徒歩8分",
     "access_hours": "12:00〜翌5:00（最終受付 4:00）／年中無休",
     "access_parking": "専用駐車場なし（近隣コインパーキングをご利用ください）",
     "phone_display": "080-5832-6288",
-    "cta_heading": "完全予約制",
-    "cta_subtext": "希望のセラピストがいましたらこちらからご連絡くださいませ",
-    "cta_note": "※当日のご予約は比較的難しい為事前ご予約を推奨いたします",
-    "footer_tagline": "大阪・梅田の完全予約制メンズエステ。<br>非日常の癒しを、あなたに。",
+    "cta_heading": "その疲れ、今夜終わらせませんか。",
+    "cta_subtext": "予約はたった30秒。空き状況はこちらからすぐに確認できます。",
+    "cta_note": "初めての方は今なら60分コースが50%OFF（今月あと4名様）",
+    "footer_tagline": "大阪・兎我野町の完全個室メンズエステ。<br>非日常の癒しを、あなたに。",
     "footer_nav_reasons_label": "選ばれる理由",
     "footer_nav_menu_label": "施術メニュー",
     "footer_nav_therapist_label": "セラピスト紹介",
@@ -140,51 +140,113 @@
     "cta_bg": "https://picsum.photos/seed/cielspa-cta/1600/900",
     "recruit_cta_bg": "https://picsum.photos/seed/cielspa-recruit/1600/900"
   },
+  "imageSettings": {
+    "hero_bg": {
+      "scale": 1,
+      "posX": 50,
+      "posY": 50
+    },
+    "course1_img": {
+      "scale": 1,
+      "posX": 50,
+      "posY": 50
+    },
+    "course2_img": {
+      "scale": 1,
+      "posX": 50,
+      "posY": 50
+    },
+    "course3_img": {
+      "scale": 1,
+      "posX": 50,
+      "posY": 50
+    },
+    "gallery1_img": {
+      "scale": 1,
+      "posX": 50,
+      "posY": 50
+    },
+    "gallery2_img": {
+      "scale": 1,
+      "posX": 50,
+      "posY": 50
+    },
+    "gallery3_img": {
+      "scale": 1,
+      "posX": 50,
+      "posY": 50
+    },
+    "gallery4_img": {
+      "scale": 1,
+      "posX": 50,
+      "posY": 50
+    },
+    "gallery5_img": {
+      "scale": 1,
+      "posX": 50,
+      "posY": 50
+    },
+    "gallery6_img": {
+      "scale": 1,
+      "posX": 50,
+      "posY": 50
+    },
+    "cta_bg": {
+      "scale": 1,
+      "posX": 50,
+      "posY": 50
+    },
+    "recruit_cta_bg": {
+      "scale": 1,
+      "posX": 50,
+      "posY": 50
+    }
+  },
   "visibility": {
-    "reasons": false,
+    "reasons": true,
     "menu": true,
-    "course": false,
-    "therapist": false,
-    "gallery": false,
-    "voice": false,
+    "course": true,
+    "therapist": true,
+    "gallery": true,
+    "voice": true,
     "flow": true,
     "faq": true,
     "access": true,
     "cta": true,
-    "nav_reasons": false,
+    "nav_reasons": true,
     "nav_menu": true,
     "nav_therapist": true,
-    "nav_voice": false,
+    "nav_voice": true,
     "nav_access": true,
-    "hero_badge1": false,
-    "hero_badge2": false,
-    "hero_badge3": false,
-    "hero_badge4": false,
-    "reasons_icons": false,
-    "footer_sns_instagram": false,
-    "footer_sns_line": false,
-    "footer_sns_map": false,
+    "hero_badge1": true,
+    "hero_badge2": true,
+    "hero_badge3": true,
+    "hero_badge4": true,
+    "reasons_icons": true,
+    "footer_sns_instagram": true,
+    "footer_sns_line": true,
+    "footer_sns_map": true,
     "footer_sns_x": true,
     "footer_group_menu": true,
-    "footer_nav_reasons": false,
+    "footer_nav_reasons": true,
     "footer_nav_menu": true,
-    "footer_nav_therapist": false,
+    "footer_nav_therapist": true,
     "footer_nav_access": true,
     "footer_group_company": true,
-    "footer_nav_company": false,
+    "footer_nav_company": true,
     "footer_nav_recruit": true,
     "footer_nav_sns": true,
-    "footer_nav_privacy": false,
-    "footer_nav_terms": false
+    "footer_nav_privacy": true,
+    "footer_nav_terms": true
   },
   "links": {
     "phone_number": "080-5832-6288",
-    "line_url": "https://line.me/ti/p/evuX-Z-xtn",
+    "line_url": "https://line.me/",
     "web_reservation_url": "",
-    "therapist_page_url": "https://estama.jp/shop/43157/cast/",
-    "instagram_url": "",
+    "therapist_page_url": "",
+    "instagram_url": "https://www.instagram.com/",
     "google_map_url": "https://maps.google.com/",
-    "x_username": "hamadacherryboy",
+    "x_username": "cherryspa_to",
     "gallery1_link": "",
     "gallery2_link": "",
     "gallery3_link": "",
@@ -198,21 +260,30 @@
       "role": "チーフセラピスト",
       "bio": "お客様一人ひとりのお身体の状態に合わせて、圧の強さや進め方を丁寧に調整します。落ち着いた雰囲気の中で、しっかりとリラックスしていただける時間をお届けします。",
       "comment": "「お客様の呼吸が深くなる瞬間が一番の喜びです。丁寧なカウンセリングを大切にしています。」",
-      "image": "https://picsum.photos/seed/cielspa-therapist1/500/560"
+      "image": "https://picsum.photos/seed/cielspa-therapist1/500/560",
+      "imageScale": 1,
+      "imagePosX": 50,
+      "imagePosY": 50
     },
     {
       "name": "高橋 玲奈",
       "role": "シニアセラピスト",
       "bio": "むくみや冷えでお悩みの方に特に人気です。じっくりと時間をかけたトリートメントで、施術後も効果を感じていただきやすいと好評をいただいています。",
       "comment": "「むくみや冷えのお悩みに強みがあります。芯からポカポカになる施術をお届けします。」",
-      "image": "https://picsum.photos/seed/cielspa-therapist2/500/560"
+      "image": "https://picsum.photos/seed/cielspa-therapist2/500/560",
+      "imageScale": 1,
+      "imagePosX": 50,
+      "imagePosY": 50
     },
     {
       "name": "中村 彩",
       "role": "フェイシャルスペシャリスト",
       "bio": "丁寧なハンドテクニックが持ち味で、疲れの溜まった顔まわりを中心に、すっきりとした仕上がりを感じていただけます。初めての方にも優しく対応します。",
       "comment": "「小顔・毛穴ケアが得意です。仕上がりの変化をその場で実感いただけます。」",
-      "image": "https://picsum.photos/seed/cielspa-therapist3/500/560"
+      "image": "https://picsum.photos/seed/cielspa-therapist3/500/560",
+      "imageScale": 1,
+      "imagePosX": 50,
+      "imagePosY": 50
     }
   ],
   "sns": [
@@ -227,6 +298,10 @@
     {
       "label": "X（旧Twitter）",
       "url": "https://x.com/cherryspa_to"
+    },
+    {
+      "label": "Googleマップ",
+      "url": "https://maps.google.com/"
     }
   ]
 }

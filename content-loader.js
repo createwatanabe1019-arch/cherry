@@ -22,6 +22,17 @@
     return div.innerHTML;
   }
 
+  // ズーム率・表示位置（X%, Y%）をimg要素へ適用する共通処理
+  function applyImageTransform(el, settings) {
+    if (!settings) return;
+    var posX = settings.posX != null ? settings.posX : 50;
+    var posY = settings.posY != null ? settings.posY : 50;
+    var scale = settings.scale != null ? settings.scale : 1;
+    el.style.objectPosition = posX + '% ' + posY + '%';
+    el.style.transformOrigin = posX + '% ' + posY + '%';
+    el.style.transform = 'scale(' + scale + ')';
+  }
+
   // ---- セラピスト一覧の動的レンダリング（トップページのプレビュー／専用ページの全件） ----
   function renderTherapists(list) {
     list = list || [];
@@ -31,10 +42,14 @@
 
     function cardHtml(t, full) {
       var img = t.image || 'https://picsum.photos/seed/therapist-placeholder/500/560';
+      var posX = t.imagePosX != null ? t.imagePosX : 50;
+      var posY = t.imagePosY != null ? t.imagePosY : 50;
+      var scale = t.imageScale != null ? t.imageScale : 1;
+      var imgStyle = 'object-position:' + posX + '% ' + posY + '%;transform-origin:' + posX + '% ' + posY + '%;transform:scale(' + scale + ');';
       var bioHtml = full ? '<p class="therapist-bio">' + escapeHtml(t.bio || '') + '</p>' : '';
       return (
         '<article class="therapist-card reveal in-view">' +
-          '<img src="' + escapeHtml(img) + '" alt="セラピスト ' + escapeHtml(t.name || '') + '" loading="lazy" width="500" height="560">' +
+          '<img src="' + escapeHtml(img) + '" style="' + imgStyle + '" alt="セラピスト ' + escapeHtml(t.name || '') + '" loading="lazy" width="500" height="560">' +
           '<div class="therapist-body">' +
             '<h3>' + escapeHtml(t.name || '') + '</h3>' +
             '<p class="therapist-role">' + escapeHtml(t.role || '') + '</p>' +
@@ -96,6 +111,14 @@
         if (data.images[key]) {
           el.src = data.images[key];
         }
+      });
+    }
+
+    // ---- 画像のズーム・表示位置（トリミング調整） ----
+    if (data.imageSettings) {
+      document.querySelectorAll('[data-img-key]').forEach(function (el) {
+        var settings = data.imageSettings[el.dataset.imgKey];
+        applyImageTransform(el, settings);
       });
     }
 

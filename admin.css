@@ -164,6 +164,16 @@ input, textarea { font: inherit; }
 }
 .image-url-input { margin-top: 8px; font-size: 11px; }
 
+/* 画像のズーム・位置調整 */
+.image-adjust { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+.image-adjust-row { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--admin-text-sub); }
+.image-adjust-row span { width: 42px; flex-shrink: 0; }
+.image-adjust-row input[type="range"] { flex: 1; accent-color: var(--admin-primary); }
+.image-adjust-reset {
+  margin-top: 4px; align-self: flex-start; background: none; border: none; color: var(--admin-primary);
+  font-size: 11px; text-decoration: underline; padding: 0;
+}
+
 /* ---------- プレビュー ---------- */
 .admin-preview {
   position: sticky; top: 24px;

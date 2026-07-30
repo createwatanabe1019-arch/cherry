@@ -339,6 +339,7 @@ const DRAFT_KEY = 'cherryspa_content_draft';
 let state = {
   text: {},
   images: {},
+  imageSettings: {},
   visibility: {},
   links: { phone_number: '', line_url: '' },
   therapists: [],
@@ -561,6 +562,18 @@ function buildListManager(container, stateKey, config) {
 
       card.appendChild(dropzone);
       card.appendChild(fileInput);
+
+      const proxySettings = {
+        scale: item.imageScale != null ? item.imageScale : 1,
+        posX: item.imagePosX != null ? item.imagePosX : 50,
+        posY: item.imagePosY != null ? item.imagePosY : 50,
+      };
+      card.appendChild(buildImageAdjustControls(img, proxySettings, () => {
+        item.imageScale = proxySettings.scale;
+        item.imagePosX = proxySettings.posX;
+        item.imagePosY = proxySettings.posY;
+        pushPreview();
+      }));
     }
 
     // テキストフィールド群
@@ -637,6 +650,69 @@ function buildListTab() {
   const snsContainer = document.getElementById('snsListContainer');
   if (staffContainer) buildListManager(staffContainer, 'therapists', THERAPIST_LIST_CONFIG);
   if (snsContainer) buildListManager(snsContainer, 'sns', SNS_LIST_CONFIG);
+}
+
+// 画像要素にズーム率・表示位置を反映する（管理画面プレビュー用サムネイルにも使う）
+function applyImageTransformToEl(imgEl, settings) {
+  const posX = settings.posX != null ? settings.posX : 50;
+  const posY = settings.posY != null ? settings.posY : 50;
+  const scale = settings.scale != null ? settings.scale : 1;
+  imgEl.style.objectPosition = `${posX}% ${posY}%`;
+  imgEl.style.transformOrigin = `${posX}% ${posY}%`;
+  imgEl.style.transform = `scale(${scale})`;
+  imgEl.style.objectFit = 'cover';
+}
+
+// ズーム／横位置／縦位置の3つのスライダーをまとめて生成する
+function buildImageAdjustControls(imgEl, settings, onChange) {
+  const wrap = document.createElement('div');
+  wrap.className = 'image-adjust';
+
+  const rows = [
+    { label: 'ズーム', key: 'scale', min: 1, max: 2.5, step: 0.05 },
+    { label: '横位置', key: 'posX', min: 0, max: 100, step: 1 },
+    { label: '縦位置', key: 'posY', min: 0, max: 100, step: 1 },
+  ];
+
+  rows.forEach((row) => {
+    const line = document.createElement('label');
+    line.className = 'image-adjust-row';
+    const labelSpan = document.createElement('span');
+    labelSpan.textContent = row.label;
+    const input = document.createElement('input');
+    input.type = 'range';
+    input.min = row.min;
+    input.max = row.max;
+    input.step = row.step;
+    input.value = settings[row.key] != null ? settings[row.key] : (row.key === 'scale' ? 1 : 50);
+    input.addEventListener('input', () => {
+      settings[row.key] = parseFloat(input.value);
+      applyImageTransformToEl(imgEl, settings);
+      onChange();
+    });
+    line.appendChild(labelSpan);
+    line.appendChild(input);
+    wrap.appendChild(line);
+  });
+
+  const resetBtn = document.createElement('button');
+  resetBtn.type = 'button';
+  resetBtn.className = 'image-adjust-reset';
+  resetBtn.textContent = '位置・ズームをリセット';
+  resetBtn.addEventListener('click', () => {
+    settings.scale = 1;
+    settings.posX = 50;
+    settings.posY = 50;
+    wrap.querySelectorAll('input[type="range"]').forEach((input, i) => {
+      input.value = rows[i].key === 'scale' ? 1 : 50;
+    });
+    applyImageTransformToEl(imgEl, settings);
+    onChange();
+  });
+  wrap.appendChild(resetBtn);
+
+  applyImageTransformToEl(imgEl, settings);
+  return wrap;
 }
 
 function buildImageTab() {
@@ -726,6 +802,12 @@ function buildImageTab() {
     cell.appendChild(dropzone);
     cell.appendChild(fileInput);
     cell.appendChild(urlRow);
+
+    if (!state.imageSettings[field.key]) {
+      state.imageSettings[field.key] = { scale: 1, posX: 50, posY: 50 };
+    }
+    cell.appendChild(buildImageAdjustControls(img, state.imageSettings[field.key], pushPreview));
+
     grid.appendChild(cell);
   });
 
@@ -762,6 +844,7 @@ function loadContentJsonFile(file) {
       state = {
         text: data.text || {},
         images: data.images || {},
+        imageSettings: data.imageSettings || {},
         visibility: data.visibility || {},
         links: data.links || { phone_number: '', line_url: '' },
         therapists: data.therapists || [],
@@ -787,6 +870,7 @@ function tryAutoLoadContentJson() {
       state = {
         text: data.text || {},
         images: data.images || {},
+        imageSettings: data.imageSettings || {},
         visibility: data.visibility || {},
         links: data.links || { phone_number: '', line_url: '' },
         therapists: data.therapists || [],
