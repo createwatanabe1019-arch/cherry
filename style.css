@@ -40,22 +40,22 @@ a { color: inherit; text-decoration: none; }
 ul, ol { list-style: none; margin: 0; padding: 0; }
 button { font: inherit; background: none; border: none; cursor: pointer; }
 table { border-collapse: collapse; width: 100%; }
-h1, h2, h3 { font-family: "Shippori Mincho", "Yu Mincho", serif; color: var(--color-heading); margin: 0; }
+h1, h2, h3 { font-family: "Zen Maru Gothic", "Yu Gothic", sans-serif; font-weight: 700; color: var(--color-heading); margin: 0; }
 
 /* ---------- 2. デザイントークン（メンズエステ向け：黒×ゴールド×深紅の夜の高級感） ---------- */
 :root {
-  /* Color */
-  --color-bg: #131110;
-  --color-bg-alt: #1B1815;
-  --color-text: #C9C2B7;
-  --color-heading: #F3EDE3;
-  --color-gold: #C6A15A;
-  --color-gold-deep: #E3BD78;
-  --color-red: #8C2438;
-  --color-red-deep: #A8324A;
-  --color-border: rgba(255,255,255,.12);
-  --color-card: #1E1A17;
-  --color-dark: #0B0A09;
+  /* Color（可愛い系：ピンク×コーラル×ホワイト） */
+  --color-bg: #FFF6F8;
+  --color-bg-alt: #FFEAF1;
+  --color-text: #7A5B60;
+  --color-heading: #4A2E36;
+  --color-gold: #FF7FA6;
+  --color-gold-deep: #E8558A;
+  --color-red: #FF5D7A;
+  --color-red-deep: #F03D63;
+  --color-border: #FFD3E1;
+  --color-card: #FFFFFF;
+  --color-dark: #7A3B52;
 
   /* Spacing */
   --section-py: 110px;
@@ -78,7 +78,7 @@ h1, h2, h3 { font-family: "Shippori Mincho", "Yu Mincho", serif; color: var(--co
 .sp-only { display: none; }
 
 .eyebrow {
-  font-family: "Cinzel", "Cormorant Garamond", serif;
+  font-family: "Fredoka", "Zen Maru Gothic", sans-serif;
   font-style: normal;
   font-weight: 600;
   text-transform: uppercase;
@@ -154,18 +154,18 @@ h1, h2, h3 { font-family: "Shippori Mincho", "Yu Mincho", serif; color: var(--co
 /* ---------- 4. ヘッダー ---------- */
 .site-header {
   position: fixed; top: 0; left: 0; width: 100%; z-index: 500;
-  background: rgba(19,17,16,.82);
+  background: rgba(255,246,248,.85);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent;
   transition: box-shadow .3s, border-color .3s, background .3s;
 }
-.site-header.is-scrolled { box-shadow: 0 4px 24px rgba(0,0,0,.35); border-color: var(--color-border); background: rgba(19,17,16,.95); }
+.site-header.is-scrolled { box-shadow: 0 4px 24px rgba(255,127,166,.18); border-color: var(--color-border); background: rgba(255,246,248,.97); }
 .header-inner {
   max-width: var(--container-w); margin: 0 auto; padding: 16px 24px;
   display: flex; align-items: center; justify-content: space-between; gap: 20px;
 }
 .logo { display: flex; flex-direction: column; line-height: 1.2; }
-.logo-en { font-family: "Cinzel", serif; font-weight: 600; font-size: 20px; letter-spacing: .16em; color: var(--color-heading); }
+.logo-en { font-family: "Zen Maru Gothic", sans-serif; font-weight: 700; font-size: 20px; letter-spacing: .04em; color: var(--color-heading); }
 .logo-ja { font-size: 10px; letter-spacing: .08em; color: var(--color-gold-deep); }
 .gnav ul { display: flex; gap: 30px; }
 .gnav a { font-size: 14px; position: relative; padding: 4px 0; }
@@ -191,7 +191,7 @@ h1, h2, h3 { font-family: "Shippori Mincho", "Yu Mincho", serif; color: var(--co
 .hero-bg img { width: 100%; height: 120%; object-fit: cover; object-position: center; }
 .hero-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(20,18,16,.55) 0%, rgba(20,18,16,.35) 45%, rgba(20,18,16,.7) 100%);
+  background: linear-gradient(180deg, rgba(122,59,82,.5) 0%, rgba(122,59,82,.28) 45%, rgba(122,59,82,.62) 100%);
 }
 .hero-content { position: relative; z-index: 1; padding: 140px 24px 100px; max-width: 780px; }
 .hero-content h1 {
@@ -253,7 +253,7 @@ h1, h2, h3 { font-family: "Shippori Mincho", "Yu Mincho", serif; color: var(--co
 .menu-table thead th { background: var(--color-bg-alt); font-size: 12px; color: #8F887C; font-weight: 500; }
 .menu-table tbody th { font-weight: 700; color: var(--color-heading); }
 .menu-table tbody tr:last-child td, .menu-table tbody tr:last-child th { border-bottom: none; }
-.menu-table tbody tr:hover { background: rgba(198,161,90,.06); }
+.menu-table tbody tr:hover { background: rgba(255,127,166,.08); }
 
 /* ---------- 8. おすすめコース ---------- */
 .course-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
@@ -271,7 +271,7 @@ h1, h2, h3 { font-family: "Shippori Mincho", "Yu Mincho", serif; color: var(--co
 .course-card-featured { border-color: var(--color-gold); box-shadow: 0 20px 50px rgba(184,151,90,.18); }
 .course-badge {
   position: absolute; top: 16px; left: 16px; z-index: 2;
-  background: rgba(28,27,25,.85); color: #fff; font-size: 11px; letter-spacing: .06em;
+  background: rgba(122,59,82,.85); color: #fff; font-size: 11px; letter-spacing: .06em;
   padding: 7px 14px; border-radius: 999px; backdrop-filter: blur(4px);
 }
 .course-badge-gold { background: var(--color-gold); color: #fff; }
@@ -280,7 +280,7 @@ h1, h2, h3 { font-family: "Shippori Mincho", "Yu Mincho", serif; color: var(--co
 .course-body p { font-size: 13.5px; color: #A79E90; flex: 1; }
 .course-price { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
 .price-before { text-decoration: line-through; color: #6E675D; font-size: 14px; }
-.price-now { font-family: "Cormorant Garamond", serif; font-size: 26px; font-weight: 600; color: var(--color-heading); }
+.price-now { font-family: "Fredoka", sans-serif; font-size: 26px; font-weight: 600; color: var(--color-heading); }
 .price-now-gold { color: var(--color-gold-deep); }
 .price-note { font-size: 11px; color: #8F887C; }
 .course-limit { font-size: 12px; color: var(--color-gold-deep); }
@@ -312,7 +312,7 @@ h1, h2, h3 { font-family: "Shippori Mincho", "Yu Mincho", serif; color: var(--co
 .gallery-grid a:nth-child(4) { grid-row: span 2; grid-column: span 1; }
 
 /* ---------- 11. お客様の声 ---------- */
-.rating-score { font-family: "Cormorant Garamond", serif; font-size: 32px; color: var(--color-gold-deep); vertical-align: middle; margin-right: 6px; }
+.rating-score { font-family: "Fredoka", sans-serif; font-size: 32px; color: var(--color-gold-deep); vertical-align: middle; margin-right: 6px; }
 .rating-stars { color: var(--color-gold); letter-spacing: 2px; vertical-align: middle; margin-right: 8px; }
 .voice-scroll {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
@@ -338,7 +338,7 @@ h1, h2, h3 { font-family: "Shippori Mincho", "Yu Mincho", serif; color: var(--co
   position: absolute; left: 0; top: 0; width: 56px; height: 56px;
   border-radius: 50%; background: var(--color-dark); color: #fff;
   display: flex; align-items: center; justify-content: center;
-  font-family: "Cormorant Garamond", serif; font-size: 12px; letter-spacing: .02em; text-align: center;
+  font-family: "Fredoka", sans-serif; font-size: 12px; letter-spacing: .02em; text-align: center;
 }
 .flow-item h3 { font-size: 17px; margin-bottom: 8px; }
 .flow-item p { font-size: 13.5px; color: #A79E90; }
@@ -423,7 +423,7 @@ h1, h2, h3 { font-family: "Shippori Mincho", "Yu Mincho", serif; color: var(--co
   transition: opacity .6s ease, visibility .6s ease;
 }
 #loader .loader-mark {
-  font-family: "Cormorant Garamond", serif; font-size: 28px; letter-spacing: .3em; color: var(--color-gold);
+  font-family: "Fredoka", sans-serif; font-size: 28px; letter-spacing: .2em; color: var(--color-gold);
   animation: pulseFade 1.3s ease-in-out infinite;
 }
 #loader.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
