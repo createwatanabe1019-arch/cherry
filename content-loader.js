@@ -105,13 +105,38 @@
     }).join('');
   }
 
+  // ---- 店内ギャラリーの動的レンダリング（枚数可変・キャプション対応） ----
+  function renderGallery(list) {
+    list = list || [];
+    var el = document.querySelector('[data-gallery-container]');
+    if (!el) return;
+    el.innerHTML = list.map(function (g) {
+      var img = g.image || 'https://picsum.photos/seed/gallery-placeholder/700/500';
+      var posX = g.imagePosX != null ? g.imagePosX : 50;
+      var posY = g.imagePosY != null ? g.imagePosY : 50;
+      var scale = g.imageScale != null ? g.imageScale : 1;
+      var imgStyle = 'object-position:' + posX + '% ' + posY + '%;transform-origin:' + posX + '% ' + posY + '%;transform:scale(' + scale + ');';
+      var href = g.link ? escapeHtml(g.link) : 'javascript:void(0)';
+      var captionHtml = g.caption ? '<p class="gallery-caption">' + escapeHtml(g.caption) + '</p>' : '';
+      return (
+        '<figure class="gallery-item reveal in-view">' +
+          '<a class="gallery-link" href="' + href + '" target="_blank" rel="noopener">' +
+            '<img src="' + escapeHtml(img) + '" style="' + imgStyle + '" alt="' + escapeHtml(g.caption || '店内の様子') + '" loading="lazy">' +
+          '</a>' +
+          captionHtml +
+        '</figure>'
+      );
+    }).join('');
+  }
+
   function applyContent(data) {
     if (!data) return;
 
-    // ---- セラピスト一覧・SNS一覧・お知らせ（動的リスト） ----
+    // ---- セラピスト一覧・SNS一覧・お知らせ・店内ギャラリー（動的リスト） ----
     renderTherapists(data.therapists);
     renderSns(data.sns);
     renderNews(data.news);
+    renderGallery(data.gallery);
 
     // ---- テキスト ----
     if (data.text) {
@@ -197,13 +222,6 @@
           a.href = data.links.google_map_url;
         });
       }
-      // ギャラリー画像の個別リンク（gallery1_link 〜 gallery6_link）
-      document.querySelectorAll('[data-gallery-link]').forEach(function (a) {
-        var linkKey = a.dataset.galleryLink + '_link';
-        if (data.links[linkKey]) {
-          a.href = data.links[linkKey];
-        }
-      });
       // X（旧Twitter）プロフィールへのリンク
       if (data.links.x_username) {
         var xUsername = data.links.x_username.replace(/^@/, '').trim();

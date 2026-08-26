@@ -122,18 +122,6 @@ const TEXT_GROUPS = [
     ],
   },
   {
-    group: '⑥ 店内紹介（画像のリンク先）',
-    special: 'links',
-    fields: [
-      { key: 'gallery1_link', label: '写真1 のリンク先URL（空欄ならリンクなし）', type: 'text' },
-      { key: 'gallery2_link', label: '写真2 のリンク先URL（空欄ならリンクなし）', type: 'text' },
-      { key: 'gallery3_link', label: '写真3 のリンク先URL（空欄ならリンクなし）', type: 'text' },
-      { key: 'gallery4_link', label: '写真4 のリンク先URL（空欄ならリンクなし）', type: 'text' },
-      { key: 'gallery5_link', label: '写真5 のリンク先URL（空欄ならリンクなし）', type: 'text' },
-      { key: 'gallery6_link', label: '写真6 のリンク先URL（空欄ならリンクなし）', type: 'text' },
-    ],
-  },
-  {
     group: '⑦ お客様の声',
     sectionKey: 'voice',
     fields: [
@@ -243,12 +231,6 @@ const IMAGE_FIELDS = [
   { key: 'course1_img', label: 'コース1 画像（人気No.1）' },
   { key: 'course2_img', label: 'コース2 画像（初回限定）' },
   { key: 'course3_img', label: 'コース3 画像（リピーター人気）' },
-  { key: 'gallery1_img', label: '店内ギャラリー 1' },
-  { key: 'gallery2_img', label: '店内ギャラリー 2' },
-  { key: 'gallery3_img', label: '店内ギャラリー 3' },
-  { key: 'gallery4_img', label: '店内ギャラリー 4' },
-  { key: 'gallery5_img', label: '店内ギャラリー 5' },
-  { key: 'gallery6_img', label: '店内ギャラリー 6' },
   { key: 'cta_bg', label: '予約CTAセクション背景' },
   { key: 'recruit_cta_bg', label: '求人ページ CTA背景' },
 ];
@@ -346,6 +328,7 @@ let state = {
   therapists: [],
   sns: [],
   news: [],
+  gallery: [],
 };
 
 function pushPreview() {
@@ -660,13 +643,27 @@ const NEWS_LIST_CONFIG = {
   ],
 };
 
+const GALLERY_LIST_CONFIG = {
+  intro: '店内紹介（トップページ）に表示する写真の追加・編集・削除ができます。枚数は自由に増減でき、各写真の下にキャプション（説明文）とリンク先を設定できます。',
+  hasImage: true,
+  addLabel: '＋ 写真を追加',
+  itemLabel: (item, index) => item.caption || `写真${index + 1}（キャプション未入力）`,
+  emptyItem: () => ({ image: '', caption: '', link: '' }),
+  fields: [
+    { key: 'caption', label: 'キャプション（写真の下に表示するテキスト）', type: 'text' },
+    { key: 'link', label: 'リンク先URL（空欄ならリンクなし）', type: 'text' },
+  ],
+};
+
 function buildListTab() {
   const staffContainer = document.getElementById('staffListContainer');
   const snsContainer = document.getElementById('snsListContainer');
   const newsContainer = document.getElementById('newsListContainer');
+  const galleryContainer = document.getElementById('galleryListContainer');
   if (staffContainer) buildListManager(staffContainer, 'therapists', THERAPIST_LIST_CONFIG);
   if (snsContainer) buildListManager(snsContainer, 'sns', SNS_LIST_CONFIG);
   if (newsContainer) buildListManager(newsContainer, 'news', NEWS_LIST_CONFIG);
+  if (galleryContainer) buildListManager(galleryContainer, 'gallery', GALLERY_LIST_CONFIG);
 }
 
 // 画像要素にズーム率・表示位置を反映する（管理画面プレビュー用サムネイルにも使う）
@@ -867,6 +864,7 @@ function loadContentJsonFile(file) {
         therapists: data.therapists || [],
         sns: data.sns || [],
         news: data.news || [],
+        gallery: data.gallery || [],
       };
       buildTextTab();
       buildImageTab();
@@ -894,6 +892,7 @@ function tryAutoLoadContentJson() {
         therapists: data.therapists || [],
         sns: data.sns || [],
         news: data.news || [],
+        gallery: data.gallery || [],
       };
       buildTextTab();
       buildImageTab();

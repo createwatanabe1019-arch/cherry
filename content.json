@@ -131,12 +131,6 @@
     "course1_img": "https://picsum.photos/seed/cielspa-course1/600/440",
     "course2_img": "https://picsum.photos/seed/cielspa-course2/600/440",
     "course3_img": "https://picsum.photos/seed/cielspa-course3/600/440",
-    "gallery1_img": "https://picsum.photos/seed/cielspa-g1/700/900",
-    "gallery2_img": "https://picsum.photos/seed/cielspa-g2/700/500",
-    "gallery3_img": "https://picsum.photos/seed/cielspa-g3/700/500",
-    "gallery4_img": "https://picsum.photos/seed/cielspa-g4/700/900",
-    "gallery5_img": "https://picsum.photos/seed/cielspa-g5/700/500",
-    "gallery6_img": "https://picsum.photos/seed/cielspa-g6/700/500",
     "cta_bg": "https://picsum.photos/seed/cielspa-cta/1600/900",
     "recruit_cta_bg": "https://picsum.photos/seed/cielspa-recruit/1600/900"
   },
@@ -247,13 +241,7 @@
     "therapist_page_url": "",
     "instagram_url": "https://www.instagram.com/",
     "google_map_url": "https://maps.google.com/",
-    "x_username": "cherryspa_to",
-    "gallery1_link": "",
-    "gallery2_link": "",
-    "gallery3_link": "",
-    "gallery4_link": "",
-    "gallery5_link": "",
-    "gallery6_link": ""
+    "x_username": "cherryspa_to"
   },
   "therapists": [
     {
@@ -315,6 +303,56 @@
       "date": "2026.07.15",
       "title": "営業時間のお知らせ",
       "body": "12:00〜翌5:00の通常営業を行っております。深夜のご利用もお気軽にどうぞ。"
+    }
+  ],
+  "gallery": [
+    {
+      "image": "https://picsum.photos/seed/cielspa-g1/700/900",
+      "caption": "施術個室の様子",
+      "link": "",
+      "imageScale": 1,
+      "imagePosX": 50,
+      "imagePosY": 50
+    },
+    {
+      "image": "https://picsum.photos/seed/cielspa-g2/700/500",
+      "caption": "待合ラウンジ",
+      "link": "",
+      "imageScale": 1,
+      "imagePosX": 50,
+      "imagePosY": 50
+    },
+    {
+      "image": "https://picsum.photos/seed/cielspa-g3/700/500",
+      "caption": "アメニティとタオル",
+      "link": "",
+      "imageScale": 1,
+      "imagePosX": 50,
+      "imagePosY": 50
+    },
+    {
+      "image": "https://picsum.photos/seed/cielspa-g4/700/900",
+      "caption": "パウダールーム",
+      "link": "",
+      "imageScale": 1,
+      "imagePosX": 50,
+      "imagePosY": 50
+    },
+    {
+      "image": "https://picsum.photos/seed/cielspa-g5/700/500",
+      "caption": "エントランス",
+      "link": "",
+      "imageScale": 1,
+      "imagePosX": 50,
+      "imagePosY": 50
+    },
+    {
+      "image": "https://picsum.photos/seed/cielspa-g6/700/500",
+      "caption": "施術オイルとリネン",
+      "link": "",
+      "imageScale": 1,
+      "imagePosX": 50,
+      "imagePosY": 50
     }
   ]
 }
