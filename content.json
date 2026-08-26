@@ -13,7 +13,7 @@
     "hero_title_pre": "今までにない初めての",
     "hero_title_gold": "癒し",
     "hero_title_post": "という贅沢を。",
-    "hero_sub": "今までにない初めてのメンズエステ体験の為の\n完全予約制のプライベートサロン",
+    "hero_sub": "初めての体験の為の\n完全予約制のプライベートサロン",
     "hero_badge1_label": "国家資格セラピスト在籍",
     "hero_badge2_label": "完全個室",
     "hero_badge3_label": "深夜5時まで営業",
@@ -289,20 +289,12 @@
   ],
   "sns": [
     {
-      "label": "Instagram",
-      "url": "https://www.instagram.com/"
-    },
-    {
       "label": "LINE公式アカウント",
-      "url": "https://line.me/"
+      "url": "https://line.me/ti/p/evuX-Z-xtn"
     },
     {
       "label": "X（旧Twitter）",
-      "url": "https://x.com/cherryspa_to"
-    },
-    {
-      "label": "Googleマップ",
-      "url": "https://maps.google.com/"
+      "url": "https://x.com/hamadacherryboy"
     }
   ],
   "news": [
