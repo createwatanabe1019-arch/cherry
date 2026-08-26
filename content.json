@@ -11,7 +11,7 @@
     "nav_web_label": "WEB予約する",
     "hero_eyebrow": "OSAKA TOGANOCHO PRIVATE ESTHE",
     "hero_title_pre": "頑張った自分に、",
-    "hero_title_gold": "静寂",
+    "hero_title_gold": "癒し",
     "hero_title_post": "という贅沢を。",
     "hero_sub": "肩こり、腰痛、眠れない夜。その疲れ、<br class=\"sp-only\">\n        大阪・兎我野町の隠れ家で、そっとほどいてください。",
     "hero_badge1_label": "国家資格セラピスト在籍",
@@ -237,7 +237,8 @@
     "footer_nav_recruit": true,
     "footer_nav_sns": true,
     "footer_nav_privacy": true,
-    "footer_nav_terms": true
+    "footer_nav_terms": true,
+    "news": true
   },
   "links": {
     "phone_number": "080-5832-6288",
@@ -302,6 +303,18 @@
     {
       "label": "Googleマップ",
       "url": "https://maps.google.com/"
+    }
+  ],
+  "news": [
+    {
+      "date": "2026.08.01",
+      "title": "夏季キャンペーン実施中",
+      "body": "8月末まで、初回限定コースがさらにお得にご利用いただけます。詳しくはLINEでお問い合わせください。"
+    },
+    {
+      "date": "2026.07.15",
+      "title": "営業時間のお知らせ",
+      "body": "12:00〜翌5:00の通常営業を行っております。深夜のご利用もお気軽にどうぞ。"
     }
   ]
 }
