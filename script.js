@@ -21,9 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // アニメーション終了後にDOMから外し、操作の邪魔にならないようにする
     setTimeout(() => loader.remove(), 700);
   };
-  // フォント/画像読み込み待ち。ただし待ちすぎないよう最大800msでフォールバック
-  window.addEventListener('load', hideLoader);
-  setTimeout(hideLoader, 800);
+
+  // content.json の読み込み・画像差し替え（content-loader.js）が完了してから
+  // ローディング画面を消すことで、「デフォルト画像→最新画像」の一瞬の切り替わりを見せない。
+  // ただし通信が遅い場合に画面が固まって見えないよう、最大2.5秒で必ず消すセーフティを設ける。
+  let windowLoaded = false;
+  let contentReady = false;
+  const maybeHideLoader = () => {
+    if (windowLoaded && contentReady) hideLoader();
+  };
+  window.addEventListener('load', () => { windowLoaded = true; maybeHideLoader(); });
+  window.addEventListener('cherryspa:contentready', () => { contentReady = true; maybeHideLoader(); });
+  setTimeout(hideLoader, 2500); // セーフティネット（最大待機時間）
 
 
   /* ---------- 2. ヘッダーのスクロール挙動 & ハンバーガーメニュー ---------- */

@@ -83,12 +83,35 @@
     }).join('');
   }
 
+  // ---- お知らせ一覧の動的レンダリング（新しい日付が上に来るよう表示） ----
+  function renderNews(list) {
+    list = list || [];
+    var el = document.querySelector('[data-news-container]');
+    if (!el) return;
+    if (!list.length) {
+      el.innerHTML = '<p class="news-empty">現在お知らせはありません。</p>';
+      return;
+    }
+    el.innerHTML = list.map(function (n) {
+      return (
+        '<article class="news-item reveal in-view">' +
+          '<div class="news-item-date">' + escapeHtml(n.date || '') + '</div>' +
+          '<div class="news-item-body">' +
+            '<h3>' + escapeHtml(n.title || '') + '</h3>' +
+            '<p>' + escapeHtml(n.body || '') + '</p>' +
+          '</div>' +
+        '</article>'
+      );
+    }).join('');
+  }
+
   function applyContent(data) {
     if (!data) return;
 
-    // ---- セラピスト一覧・SNS一覧（動的リスト） ----
+    // ---- セラピスト一覧・SNS一覧・お知らせ（動的リスト） ----
     renderTherapists(data.therapists);
     renderSns(data.sns);
+    renderNews(data.news);
 
     // ---- テキスト ----
     if (data.text) {
@@ -206,6 +229,10 @@
     return false;
   }
 
+  function notifyContentReady() {
+    window.dispatchEvent(new Event('cherryspa:contentready'));
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     // 管理画面プレビュー中（下書きあり）はそちらを優先し、content.jsonの取得は行わない
     var usedDraft = loadDraftFromStorage();
@@ -213,10 +240,16 @@
     if (!usedDraft) {
       fetch('content.json', { cache: 'no-store' })
         .then(function (res) { return res.ok ? res.json() : Promise.reject(); })
-        .then(applyContent)
+        .then(function (data) {
+          applyContent(data);
+          notifyContentReady();
+        })
         .catch(function () {
           /* content.json が無い場合はHTMLの初期値のまま表示（正常動作） */
+          notifyContentReady();
         });
+    } else {
+      notifyContentReady();
     }
 
     // 管理画面で編集中は、同一ブラウザの別ウィンドウ/iframeにも

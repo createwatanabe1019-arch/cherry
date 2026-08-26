@@ -477,6 +477,25 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
   outline-offset: 3px;
 }
 
+/* ---------- お知らせ一覧 ---------- */
+.news-section { padding-top: 60px; padding-bottom: 60px; }
+.news-list { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+.news-item {
+  display: flex; gap: 20px; padding: 20px; border: 1px solid var(--color-border);
+  border-radius: 14px; background: var(--color-card);
+}
+.news-item-date {
+  flex-shrink: 0; font-family: "Fredoka", sans-serif; font-size: 13px; color: var(--color-gold-deep);
+  font-weight: 600; padding-top: 2px; width: 90px;
+}
+.news-item-body h3 { font-size: 14.5px; margin: 0 0 6px; }
+.news-item-body p { font-size: 13px; color: var(--color-text); margin: 0; }
+.news-empty { text-align: center; font-size: 13px; color: var(--color-text); }
+@media (max-width: 480px) {
+  .news-item { flex-direction: column; gap: 8px; }
+  .news-item-date { width: auto; }
+}
+
 /* ---------- SNS一覧ページ ---------- */
 .sns-list { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
 .sns-list-item {

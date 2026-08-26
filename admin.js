@@ -254,6 +254,7 @@ const IMAGE_FIELDS = [
 ];
 
 const SECTION_TOGGLES = [
+  { key: 'news', label: 'お知らせ' },
   { key: 'reasons', label: '② 選ばれる理由' },
   { key: 'menu', label: '③ 施術メニュー' },
   { key: 'course', label: '④ おすすめコース' },
@@ -344,6 +345,7 @@ let state = {
   links: { phone_number: '', line_url: '' },
   therapists: [],
   sns: [],
+  news: [],
 };
 
 function pushPreview() {
@@ -645,11 +647,26 @@ const SNS_LIST_CONFIG = {
   ],
 };
 
+const NEWS_LIST_CONFIG = {
+  intro: 'トップページの「お知らせ」欄に表示される項目を追加・編集・削除できます。上に追加したものほど下に表示されるため、新しいお知らせほど後で追加してください。',
+  hasImage: false,
+  addLabel: '＋ お知らせを追加',
+  itemLabel: (item, index) => item.title || `お知らせ${index + 1}（未入力）`,
+  emptyItem: () => ({ date: '', title: '', body: '' }),
+  fields: [
+    { key: 'date', label: '日付（例：2026.08.01）', type: 'text' },
+    { key: 'title', label: 'タイトル', type: 'text' },
+    { key: 'body', label: '本文', type: 'textarea' },
+  ],
+};
+
 function buildListTab() {
   const staffContainer = document.getElementById('staffListContainer');
   const snsContainer = document.getElementById('snsListContainer');
+  const newsContainer = document.getElementById('newsListContainer');
   if (staffContainer) buildListManager(staffContainer, 'therapists', THERAPIST_LIST_CONFIG);
   if (snsContainer) buildListManager(snsContainer, 'sns', SNS_LIST_CONFIG);
+  if (newsContainer) buildListManager(newsContainer, 'news', NEWS_LIST_CONFIG);
 }
 
 // 画像要素にズーム率・表示位置を反映する（管理画面プレビュー用サムネイルにも使う）
@@ -849,6 +866,7 @@ function loadContentJsonFile(file) {
         links: data.links || { phone_number: '', line_url: '' },
         therapists: data.therapists || [],
         sns: data.sns || [],
+        news: data.news || [],
       };
       buildTextTab();
       buildImageTab();
@@ -875,6 +893,7 @@ function tryAutoLoadContentJson() {
         links: data.links || { phone_number: '', line_url: '' },
         therapists: data.therapists || [],
         sns: data.sns || [],
+        news: data.news || [],
       };
       buildTextTab();
       buildImageTab();
