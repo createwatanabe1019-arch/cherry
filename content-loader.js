@@ -153,12 +153,32 @@
     }
 
     // ---- 画像 ----
+    // 新しい画像を裏側（メモリ上）で先に読み込み終えてから表示を切り替えることで、
+    // 「デフォルト画像が一瞬見えてから最新の画像に切り替わる」ちらつきを防ぐ。
     if (data.images) {
       document.querySelectorAll('[data-img-key]').forEach(function (el) {
         var key = el.dataset.imgKey;
-        if (data.images[key]) {
-          el.src = data.images[key];
-        }
+        var newSrc = data.images[key];
+        if (!newSrc || newSrc === el.getAttribute('src')) return; // 変更が無ければ何もしない
+
+        el.style.transition = 'opacity .35s ease';
+        el.style.opacity = '0';
+
+        var preloader = new Image();
+        preloader.onload = function () {
+          el.src = newSrc;
+          // 描画確定後にフェードインさせる
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              el.style.opacity = '1';
+            });
+          });
+        };
+        preloader.onerror = function () {
+          // 読み込み失敗時は元の表示を維持する
+          el.style.opacity = '1';
+        };
+        preloader.src = newSrc;
       });
     }
 
